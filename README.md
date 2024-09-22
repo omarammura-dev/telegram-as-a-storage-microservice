@@ -1,4 +1,3 @@
-
 # Telegram File Storage Service
 
 This project implements a gRPC-based file storage service that uses Telegram as the backend storage medium. It allows users to upload, retrieve, and delete files using Telegram's infrastructure.
@@ -44,3 +43,27 @@ The main components of the project are:
 ## Usage
 
 To start the gRPC server:
+
+```
+python server.py
+```
+
+This will start the gRPC server on the default port (50051 unless specified otherwise).
+
+## Testing with gRPCUI
+
+You can use [gRPCUI](https://github.com/fullstorydev/grpcui) to test the gRPC service interactively. gRPCUI provides a web-based interface for making gRPC requests.
+
+1. Install gRPCUI by following the instructions in their GitHub repository.
+
+2. Once the server is running, start gRPCUI:
+
+   ```
+   grpcui -plaintext localhost:50051
+   ```
+
+3. Open your web browser and navigate to `http://localhost:8080` (or the port specified by gRPCUI).
+
+4. You'll see a web interface where you can interact with your gRPC service, make requests, and view responses.
+
+This tool is particularly useful for debugging and testing your gRPC methods without writing a separate client application.
