@@ -1,13 +1,10 @@
 image: python:3.12.0-alpine
 
 stages:
+  - test
   - build
   - build-docker
   - deploy
-
-cache:
-  paths:
-    - go/pkg/mod
 
 test:
   stage: build
