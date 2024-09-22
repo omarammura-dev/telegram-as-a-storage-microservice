@@ -55,9 +55,9 @@ deploy:
     - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
     - ssh $USER@$IP_ADDRESS "docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY"
     - ssh $USER@$IP_ADDRESS "docker pull $CI_REGISTRY_IMAGE"
-    - ssh $USER@$IP_ADDRESS "docker stop mux-backend || true && docker rm mux-backend || true"
+    - ssh $USER@$IP_ADDRESS "docker stop storage-ms || true && docker rm storage-ms || true"
     - ssh $USER@$IP_ADDRESS "docker network create my-network || true"
-    - ssh $USER@$IP_ADDRESS "docker run -d --name mux-backend --network my-network -p 8080:8080 -e MONGO_URL=\"$MONGO_URL\" -e MONGO_DB_NAME=\"$MONGO_DB_NAME\" -e SENDGRID_API_KEY=\"$SENDGRID_API_KEY\" -e API_URL=\"$API_URL\" -e UI_URL=\"$UI_URL\" $CI_REGISTRY_IMAGE"
+    - ssh $USER@$IP_ADDRESS "docker run -d --name storage-ms --network my-network -p 50051:50051 -e BOT_NAME=\"$BOT_NAME\" -e APP_ID=\"$APP_ID\" -e API_HASH=\"$API_HASH\" $CI_REGISTRY_IMAGE"
   artifacts:
     paths:
       - myutilityx.com

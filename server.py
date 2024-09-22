@@ -13,7 +13,7 @@ import asyncio
 import pyminizip
 
 
-BOT_USER_NAME = os.getenv("bot_name")
+BOT_USER_NAME = os.getenv("BOT_NAME")
 
 
 FILE_CHUCK_SIZE = int(1.49 * 1024**3)
@@ -21,8 +21,8 @@ script_dir = os.path.dirname(os.path.abspath(__file__))
 temp_dir = os.path.join(script_dir, 'temp')
 os.makedirs(temp_dir, exist_ok=True)
 
-api_id = int(os.getenv("app_id"))
-api_hash = os.getenv("api_hash")
+api_id = int(os.getenv("APP_ID"))
+api_hash = os.getenv("API_HASH")
 
 
 client = TelegramClient('initial_session', api_id, api_hash)
