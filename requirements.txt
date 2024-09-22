@@ -1,0 +1,5 @@
+telethon
+pyminizip
+grpcio
+grpcio-tools
+grpcio-reflection

@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package storage;
+
+
+service Storage{
+    rpc UploadFile (UploadFileRequest) returns (UploadFileResponse);
+    rpc GetFile (GetFileRequest) returns (GetFileResponse);
+    rpc DeleteFile(DeleteFileRequest) returns (DeleteFileResponse);
+}
+
+message UploadFileRequest {
+    string filename = 1;
+    string fileData = 2;
+  }
+  
+  message UploadFileResponse {
+    string fileId = 1;
+  }
+
+  message GetFileRequest {
+    string filename = 1;
+    string fileId = 2;
+  }
+
+  message DeleteFileRequest {
+    string fileId = 1;
+  }
+  
+  message GetFileResponse {
+    string file = 1;
+  }
+
+  message DeleteFileResponse{
+    bool ok = 1;
+  }
