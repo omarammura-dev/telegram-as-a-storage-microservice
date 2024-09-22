@@ -38,7 +38,7 @@ build image:
     - docker build --platform linux/arm64 -t $CI_REGISTRY_IMAGE .
     - docker push $CI_REGISTRY_IMAGE
   only:
-    - master
+    - main
 
 deploy:
   stage: deploy
@@ -55,4 +55,4 @@ deploy:
     - ssh $USER@$IP_ADDRESS "docker network create my-network || true"
     - ssh $USER@$IP_ADDRESS "docker run -d --name storage-ms --network my-network -p 50051:50051 -e BOT_NAME=\"$BOT_NAME\" -e APP_ID=\"$APP_ID\" -e API_HASH=\"$API_HASH\" $CI_REGISTRY_IMAGE"
   only:
-    - master
+    - main
