@@ -7,7 +7,7 @@ stages:
   - deploy
 
 test:
-  stage: build
+  stage: test
   before_script:
     - apk add --no-cache --upgrade bash
     - apk add --no-cache git
