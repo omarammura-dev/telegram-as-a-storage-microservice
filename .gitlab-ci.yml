@@ -26,7 +26,7 @@ build:
     - apk add --no-cache python3 py3-pip
     - pip install -r requirements.txt
   script:
-    - python server.py build
+    - python -c "import telegram_as_storage_pb2; import telegram_as_storage_pb2_grpc"
 
 build image:
   stage: build-docker
@@ -37,7 +37,6 @@ build image:
     - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER $CI_REGISTRY --password-stdin
     - docker build --platform linux/arm64 -t $CI_REGISTRY_IMAGE .
     - docker push $CI_REGISTRY_IMAGE
-
   only:
     - master
 
@@ -55,8 +54,5 @@ deploy:
     - ssh $USER@$IP_ADDRESS "docker stop storage-ms || true && docker rm storage-ms || true"
     - ssh $USER@$IP_ADDRESS "docker network create my-network || true"
     - ssh $USER@$IP_ADDRESS "docker run -d --name storage-ms --network my-network -p 50051:50051 -e BOT_NAME=\"$BOT_NAME\" -e APP_ID=\"$APP_ID\" -e API_HASH=\"$API_HASH\" $CI_REGISTRY_IMAGE"
-  artifacts:
-    paths:
-      - myutilityx.com
   only:
     - master
